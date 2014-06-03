@@ -41,7 +41,7 @@ public class HexapodActivity extends Activity {
 				Toast toast = Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT);
 				toast.show();
 				// Start Control Activity
-				// Intent i = new Intent(HexapodActivity.this, ControlActivity.class);
+				// Intent i = new Intent(HexapodActivity.this, ControlPadActivity.class);
 				// startActivity(i);
 			}
 		}
@@ -51,7 +51,7 @@ public class HexapodActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		setContentView(R.layout.bluetooth);
 
 		final ListView listview = (ListView) findViewById(R.id.listview);
 
