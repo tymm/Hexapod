@@ -50,5 +50,20 @@ public class Communication extends Application {
 			Log.e("Hexapod", "Could not write to bluetooth output stream", e);
 		}
 	}
+
+	public boolean setGaitWaveOne() {
+		write("Gait:Wave1");
+		return true;
+	}
+
+	public boolean setGaitWaveTwo() {
+		write("Gait:Wave2");
+		return true;
+	}
+
+	public boolean setGaitWaveThree() {
+		write("Gait:Wave3");
+		return true;
+	}
 }
 

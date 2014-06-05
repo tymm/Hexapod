@@ -18,15 +18,20 @@ public class PrefFragment extends PreferenceFragment implements OnSharedPreferen
 		if (key.equals("pref_gait")) {
 			int gait_id = Integer.parseInt(sharedPreferences.getString(key, ""));
 
+			Communication comm = (Communication)getActivity().getApplication();
+
 			switch(gait_id) {
 				case 1:
 					Log.i("Hexapod", "Setting gait to Wave 1");
+					comm.setGaitWaveOne();
 					break;
 				case 2:
 					Log.i("Hexapod", "Setting gait to Wave 2");
+					comm.setGaitWaveTwo();
 					break;
 				case 3:
 					Log.i("Hexapod", "Setting gait to Wave 3");
+					comm.setGaitWaveThree();
 					break;
 				default:
 					Log.i("Hexapod", "Unable to determine gait");
