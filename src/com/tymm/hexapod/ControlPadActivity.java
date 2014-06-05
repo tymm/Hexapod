@@ -19,6 +19,7 @@ import android.view.MenuItem;
 import android.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem.OnMenuItemClickListener;
 
 public class ControlPadActivity extends Activity {
 	private TextView position_info;
@@ -508,7 +509,7 @@ public class ControlPadActivity extends Activity {
 			case R.id.settings:
 				// Goto preference activity
 				Intent intent = new Intent();
-				intent.setClass(ControlPadActivity.this, PreferenceActivity.class);
+				intent.setClass(ControlPadActivity.this, SettingsActivity.class);
 				startActivityForResult(intent, 0);
 
 				return true;

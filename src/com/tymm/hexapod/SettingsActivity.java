@@ -5,9 +5,9 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 
-public class PreferenceActivity extends Activity {
+public class SettingsActivity extends Activity {
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		PrefFragment prefFragment = new PrefFragment();

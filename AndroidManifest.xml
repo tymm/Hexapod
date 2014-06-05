@@ -27,7 +27,7 @@
 		</activity>
 
 		<activity
-				android:name=".PreferenceActivity">
+				android:name=".SettingsActivity">
 		</activity>
 
 	</application>

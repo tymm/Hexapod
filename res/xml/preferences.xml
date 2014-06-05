@@ -4,7 +4,7 @@
 			android:title="@string/pref_gait"
 			android:key="pref_key_gait_settings">
 		<ListPreference
-				android:key="pref_syncConnectionType"
+				android:key="pref_gait"
 				android:title="@string/pref_gait"
 				android:dialogTitle="@string/pref_gait_dialog"
 				android:entries="@array/pref_gait_entries"
