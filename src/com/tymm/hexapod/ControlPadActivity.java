@@ -10,6 +10,15 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.preference.PreferenceManager;
+import android.content.SharedPreferences;
+import android.view.View.OnClickListener;
+import android.content.Intent;
+import android.widget.Button;
+import android.view.MenuItem;
+import android.app.ActionBar;
+import android.view.Menu;
+import android.view.MenuInflater;
 
 public class ControlPadActivity extends Activity {
 	private TextView position_info;
@@ -484,5 +493,27 @@ public class ControlPadActivity extends Activity {
 		msg.setData(b);
 
 		return msg;
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.controlpad_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.settings:
+				// Goto preference activity
+				Intent intent = new Intent();
+				intent.setClass(ControlPadActivity.this, PreferenceActivity.class);
+				startActivityForResult(intent, 0);
+
+				return true;
+			default:
+				return super.onOptionsItemSelected(item);
+		}
 	}
 }
