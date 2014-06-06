@@ -20,6 +20,7 @@ import android.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem.OnMenuItemClickListener;
+import android.hardware.SensorManager;
 
 public class ControlPadActivity extends Activity {
 	private TextView position_info;
@@ -61,11 +62,19 @@ public class ControlPadActivity extends Activity {
 	// Directions
 	private final int TOP_TOP = 0; private final int TOP_RIGHT = 1; private final int RIGHT_RIGHT = 2; private final int BOTTOM_RIGHT = 3; private final int BOTTOM_BOTTOM = 4; private final int BOTTOM_LEFT = 5; private final int LEFT_LEFT = 6; private final int TOP_LEFT = 7;
 
+	// Sensor Manager
+	private SensorManager mSensorManager;
+	private SensorInformation sensor;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.controlpad);
+
+		// Sensors
+		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+		sensor = new SensorInformation(mSensorManager);
 
 		// Will show the position of the touch event
 		position_info = new TextView(this);
@@ -494,6 +503,18 @@ public class ControlPadActivity extends Activity {
 		msg.setData(b);
 
 		return msg;
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		sensor.start();
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		sensor.stop();
 	}
 
 	@Override
