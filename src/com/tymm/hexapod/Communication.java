@@ -9,12 +9,31 @@ import android.bluetooth.BluetoothSocket;
 import android.util.Log;
 
 /** This class is used to maintain global application state about the bluetooth connection and to send out data over bluetooth */
-public class Communication extends Application {
+public class Communication extends Application implements Runnable {
 	private BluetoothSocket socket = null;
 	private InputStream inStream = null;
 	private OutputStream outStream = null;
+	private String message = null;
 
 	public Communication() {}
+
+	// Sending happens in extra thread so we can dispatch messages without blocking anything
+	@Override
+	public void run() {
+		while (true) {
+			if (this.message != null) {
+				write(this.message);
+				this.message = null;
+			} else {
+				// Sleep
+			}
+		}
+	}
+
+	public void start() {
+		Thread t = new Thread(this);
+		t.start();
+	}
 
 	public void setSocket(BluetoothSocket socket) {
 		this.socket = socket;
@@ -51,19 +70,47 @@ public class Communication extends Application {
 		}
 	}
 
-	public boolean setGaitWaveOne() {
-		write("Gait:Wave1");
-		return true;
+	public void setGaitWaveOne() {
+		this.message = "Gait:Wave1";
 	}
 
-	public boolean setGaitWaveTwo() {
-		write("Gait:Wave2");
-		return true;
+	public void setGaitWaveTwo() {
+		this.message = "Gait:Wave2";
 	}
 
-	public boolean setGaitWaveThree() {
-		write("Gait:Wave3");
-		return true;
+	public void setGaitWaveThree() {
+		this.message = "Gait:Wave3";
+	}
+
+	public void sendUpUp() {
+		this.message = "UPUP";
+	}
+
+	public void sendUpRight() {
+		this.message = "UPUP";
+	}
+
+	public void sendRightRight() {
+		this.message = "UPUP";
+	}
+
+	public void sendDownRight() {
+		this.message = "UPUP";
+	}
+
+	public void sendDownDown() {
+		this.message = "UPUP";
+	}
+
+	public void sendDownLeft() {
+		this.message = "UPUP";
+	}
+
+	public void sendLeftLeft() {
+		this.message = "UPUP";
+	}
+
+	public void sendUpLeft() {
+		this.message = "UPUP";
 	}
 }
-
