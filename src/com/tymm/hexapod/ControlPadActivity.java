@@ -48,7 +48,7 @@ public class ControlPadActivity extends Activity {
 
 		// Sensors
 		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-		sensor = new SensorInformation(mSensorManager);
+		sensor = new SensorInformation(mSensorManager, getApplicationContext());
 
 		// Joystick
 		joystick = (JoystickView) findViewById(R.id.joystickView);

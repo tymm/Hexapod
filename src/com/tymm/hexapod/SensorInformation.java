@@ -6,6 +6,7 @@ import android.hardware.SensorManager;
 import android.util.Log;
 import android.hardware.Sensor;
 import java.lang.Math;
+import android.content.Context;
 
 class SensorInformation implements SensorEventListener {
 	private Sensor mRotationVectorSensor;
@@ -14,8 +15,9 @@ class SensorInformation implements SensorEventListener {
 	private float[] orientation = new float[3];
 	private float[] prev_orientation = new float[3];
 	private final int diff_degree = 5;
+	private Communication comm;
 
-	public SensorInformation(SensorManager SensorManager) {
+	public SensorInformation(SensorManager SensorManager, Context context) {
 		mSensorManager = SensorManager;
 
 		// find the rotation-vector sensor
@@ -25,6 +27,9 @@ class SensorInformation implements SensorEventListener {
 		mRotationMatrix[ 4] = 1;
 		mRotationMatrix[ 8] = 1;
 		mRotationMatrix[12] = 1;
+
+		// Get bluetooth communication object
+		comm = ((Communication)context.getApplicationContext());
 	}
 
 	public void start() {
@@ -46,8 +51,13 @@ class SensorInformation implements SensorEventListener {
 			SensorManager.getOrientation(mRotationMatrix, orientation);
 
 			if (isDiffBigEnoughChange(orientation)) {
-				Log.i("Hexapod", "Z: " + Math.toDegrees(orientation[0]) + " X: " + Math.toDegrees(orientation[1]) + " Y: " + Math.toDegrees(orientation[2]));
+				double Z = Math.toDegrees(orientation[0]);
+				double X = Math.toDegrees(orientation[1]);
+				double Y = Math.toDegrees(orientation[2]);
+
+				Log.i("Hexapod", "Z: " + Z + " X: " + X + " Y: " + Y);
 				// Sending sensor information here
+				comm.sendRotation(X, Y, Z);
 			}
 		}
 	}
