@@ -6,6 +6,10 @@ import java.io.OutputStream;
 
 import android.app.Application;
 import android.bluetooth.BluetoothSocket;
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.util.Log;
 
 /** This class is used to maintain global application state about the bluetooth connection and to send out data over bluetooth */
@@ -15,19 +19,21 @@ public class Communication extends Application implements Runnable {
 	private OutputStream outStream = null;
 	private String message = null;
 
+	public Handler mHandler;
+
 	public Communication() {}
 
 	// Sending happens in extra thread so we can dispatch messages without blocking anything
 	@Override
 	public void run() {
-		while (true) {
-			if (this.message != null) {
-				write(this.message);
-				this.message = null;
-			} else {
-				// Sleep
+		Looper.prepare();
+
+		mHandler = new Handler() {
+			public void handleMessage(Message msg) {
+				write(msg.getData().getString("command"));
 			}
-		}
+		};
+		Looper.loop();
 	}
 
 	public void start() {
@@ -70,47 +76,59 @@ public class Communication extends Application implements Runnable {
 		}
 	}
 
+	private void dispatchCommand(String str) {
+		Message msg = mHandler.obtainMessage();
+
+		Bundle b = new Bundle();
+		b.putString("command", str);
+
+		msg.setData(b);
+
+		mHandler.sendMessage(msg);
+	}
+
+
 	public void setGaitWaveOne() {
-		this.message = "Gait:Wave1";
+		dispatchCommand("Gait:Wave1");
 	}
 
 	public void setGaitWaveTwo() {
-		this.message = "Gait:Wave2";
+		dispatchCommand("Gait:Wave2");
 	}
 
 	public void setGaitWaveThree() {
-		this.message = "Gait:Wave3";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendUpUp() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendUpRight() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendRightRight() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendDownRight() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendDownDown() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendDownLeft() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendLeftLeft() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 
 	public void sendUpLeft() {
-		this.message = "UPUP";
+		dispatchCommand("Gait:Wave3");
 	}
 }
