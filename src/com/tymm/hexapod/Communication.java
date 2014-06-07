@@ -101,34 +101,34 @@ public class Communication extends Application implements Runnable {
 	}
 
 	public void sendUpUp() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("a");
 	}
 
 	public void sendUpRight() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("e");
 	}
 
 	public void sendRightRight() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("b");
 	}
 
 	public void sendDownRight() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("");
 	}
 
 	public void sendDownDown() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("c");
 	}
 
 	public void sendDownLeft() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("");
 	}
 
 	public void sendLeftLeft() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("d");
 	}
 
 	public void sendUpLeft() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("");
 	}
 }
