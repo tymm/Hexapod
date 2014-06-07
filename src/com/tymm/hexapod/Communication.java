@@ -67,6 +67,8 @@ public class Communication extends Application implements Runnable {
 	}
 
 	public void write(String str) {
+		// Append \n as the end of a command (important for the microcontroller)
+		str = str + '\n';
 		byte[] buffer = str.getBytes();
 		try {
 			outStream.write(buffer);
@@ -113,7 +115,7 @@ public class Communication extends Application implements Runnable {
 	}
 
 	public void sendDownRight() {
-		dispatchCommand("");
+		dispatchCommand("f");
 	}
 
 	public void sendDownDown() {
