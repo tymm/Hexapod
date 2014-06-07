@@ -66,11 +66,18 @@ public class ControlPadActivity extends Activity {
 	private SensorManager mSensorManager;
 	private SensorInformation sensor;
 
+	// Bluetooth Communication
+	private Communication comm;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.controlpad);
+
+		// Bluetooth Communication
+		comm = (Communication)getApplication();
+		comm.start();
 
 		// Sensors
 		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
@@ -283,6 +290,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(RIGHT_RIGHT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendRightRight();
 									}
 									// Done with right_right, so lets hide it
 									msg = getMessage(RIGHT_RIGHT, 1);
@@ -296,6 +305,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(BOTTOM_RIGHT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendDownRight();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(BOTTOM_RIGHT, 1);
@@ -309,6 +320,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(BOTTOM_BOTTOM, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendDownDown();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(BOTTOM_BOTTOM, 1);
@@ -322,6 +335,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(BOTTOM_LEFT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendDownLeft();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(BOTTOM_LEFT, 1);
@@ -335,6 +350,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(LEFT_LEFT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendLeftLeft();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(LEFT_LEFT, 1);
@@ -348,6 +365,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(TOP_LEFT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendUpLeft();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(TOP_LEFT, 1);
@@ -361,6 +380,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(TOP_TOP, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendUpUp();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(TOP_TOP, 1);
@@ -374,6 +395,8 @@ public class ControlPadActivity extends Activity {
 										// Send message to UI
 										msg = getMessage(TOP_RIGHT, 0);
 										circle_show.sendMessage(msg);
+										// Send command over bluetooth
+										comm.sendUpRight();
 									}
 									// Done with bottom right, so lets hide it
 									msg = getMessage(TOP_RIGHT, 1);
