@@ -18,9 +18,12 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 				// ControlPad fragment activity
 				return new ControlPadFragment();
 			case 1:
+				// Control fragment activity
+				return new ControlFragment();
+			case 2:
 				// Rotation fragment activity
 				return new RotationFragment();
-			case 2:
+			case 3:
 				// Settings fragment activity
 				return new RotationFragment();
 		}

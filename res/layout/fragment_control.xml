@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:orientation="vertical">
+
+	<Button
+		android:id="@+id/button_wakeup"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Wake Up"
+		android:onClick="wake_up" />
+
+	<Button
+		android:id="@+id/button_sleep"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Sleep"
+		android:onClick="sleep" />
+
+	<Button
+		android:id="@+id/button_shutdown"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Emergency Shutdown"
+		android:onClick="shutdown" />
+
+</LinearLayout>

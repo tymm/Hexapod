@@ -14,7 +14,7 @@ public class TabActivity extends FragmentActivity implements ActionBar.TabListen
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
 	// Tab titles
-	private String[] tabs = { "Control", "Rotation", "Settings" };
+	private String[] tabs = { "Joystick", "Control", "Rotation", "Settings" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
