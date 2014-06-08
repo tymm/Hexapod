@@ -55,7 +55,7 @@ class SensorInformation implements SensorEventListener {
 				double X = Math.toDegrees(orientation[1]);
 				double Y = Math.toDegrees(orientation[2]);
 
-				Log.i("Hexapod", "Z: " + Z + " X: " + X + " Y: " + Y);
+				Log.i("Hexapod", "Z: " + (int)Z + " X: " + (int)X + " Y: " + (int)Y);
 				// Sending sensor information here
 				comm.sendRotation(X, Y, Z);
 			}
