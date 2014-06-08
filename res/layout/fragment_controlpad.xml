@@ -4,7 +4,7 @@
 		android:layout_height="fill_parent"
 		android:paddingTop="36dp"
 		android:orientation="vertical"
-		android:background="#2c3e50">
+		android:background="#c0392b">
 
 	<com.zerokol.views.JoystickView
 		android:id="@+id/joystickView"
