@@ -29,11 +29,6 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 public class ControlPadFragment extends Fragment {
-	private TextView position_info;
-	// Sensor Manager
-	private SensorManager mSensorManager;
-	private SensorInformation sensor;
-
 	// Bluetooth Communication
 	private Communication comm;
 
@@ -104,24 +99,16 @@ public class ControlPadFragment extends Fragment {
 		// Bluetooth Communication
 		comm = (Communication)getActivity().getApplication();
 		comm.start();
-
-		Context context = getActivity().getApplicationContext();
-
-		// Sensors
-		mSensorManager = (SensorManager)context.getSystemService(context.SENSOR_SERVICE);
-		sensor = new SensorInformation(mSensorManager, getActivity().getApplicationContext());
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
-		sensor.start();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		sensor.stop();
 		// Stop joystick
 		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 

@@ -30,16 +30,20 @@ class SensorInformation implements SensorEventListener {
 
 		// Get bluetooth communication object
 		comm = ((Communication)context.getApplicationContext());
+
+		Log.i("Fragment", "Created object");
 	}
 
 	public void start() {
 		// enable our sensor when the activity is resumed, ask for
 		// 10 ms updates.
+		Log.i("Fragment", "Started listening");
 		mSensorManager.registerListener(this, mRotationVectorSensor, 10000);
 	}
 
 	public void stop() {
 		// make sure to turn our sensor off when the activity is paused
+		Log.i("Fragment", "Stoped listening");
 		mSensorManager.unregisterListener(this);
 	}
 
