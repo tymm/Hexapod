@@ -27,6 +27,7 @@ public class TabActivity extends Activity implements ActionBar.TabListener {
 		mAdapter = new TabsPagerAdapter(getFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
+		viewPager.setOffscreenPageLimit(4);
 		actionBar.setHomeButtonEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
