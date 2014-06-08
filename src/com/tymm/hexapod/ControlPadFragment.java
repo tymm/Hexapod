@@ -23,8 +23,12 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.hardware.SensorManager;
 import com.zerokol.views.JoystickView;
 import com.zerokol.views.JoystickView.OnJoystickMoveListener;
+import android.support.v4.app.Fragment;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
 
-public class ControlPadActivity extends Activity {
+public class ControlPadFragment extends Fragment {
 	private TextView position_info;
 	// Sensor Manager
 	private SensorManager mSensorManager;
@@ -36,22 +40,12 @@ public class ControlPadActivity extends Activity {
 	// Joystick
 	private JoystickView joystick;
 
-	/** Called when the activity is first created. */
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.controlpad);
-
-		// Bluetooth Communication
-		comm = (Communication)getApplication();
-		comm.start();
-
-		// Sensors
-		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-		sensor = new SensorInformation(mSensorManager, getApplicationContext());
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_controlpad, container, false);
 
 		// Joystick
-		joystick = (JoystickView) findViewById(R.id.joystickView);
+		joystick = (JoystickView) rootView.findViewById(R.id.joystickView);
 
 		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 
@@ -98,39 +92,42 @@ public class ControlPadActivity extends Activity {
 				}
 			}
 		}, JoystickView.DEFAULT_LOOP_INTERVAL);
+
+		return rootView;
+	}
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+
+		// Bluetooth Communication
+		comm = (Communication)getActivity().getApplication();
+		comm.start();
+
+		Context context = getActivity().getApplicationContext();
+
+		// Sensors
+		mSensorManager = (SensorManager)context.getSystemService(context.SENSOR_SERVICE);
+		sensor = new SensorInformation(mSensorManager, getActivity().getApplicationContext());
 	}
 
 	@Override
-	protected void onResume() {
+	public void onResume() {
 		super.onResume();
 		sensor.start();
 	}
 
 	@Override
-	protected void onPause() {
+	public void onPause() {
 		super.onPause();
 		sensor.stop();
-	}
+		// Stop joystick
+		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.controlpad_menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-			case R.id.settings:
-				// Goto preference activity
-				Intent intent = new Intent();
-				intent.setClass(ControlPadActivity.this, SettingsActivity.class);
-				startActivityForResult(intent, 0);
-
-				return true;
-			default:
-				return super.onOptionsItemSelected(item);
-		}
+			@Override
+			public void onValueChanged(int angle, int power, int direction) {
+			}
+		}, JoystickView.DEFAULT_LOOP_INTERVAL);
 	}
 }

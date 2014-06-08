@@ -41,7 +41,7 @@ public class HexapodActivity extends Activity {
 				Toast toast = Toast.makeText(getApplicationContext(), "Connected", Toast.LENGTH_SHORT);
 				toast.show();
 				// Start Control Activity
-				Intent i = new Intent(HexapodActivity.this, ControlPadActivity.class);
+				Intent i = new Intent(HexapodActivity.this, TabActivity.class);
 				startActivity(i);
 			}
 		}

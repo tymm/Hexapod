@@ -6,12 +6,21 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.util.Log;
 import android.content.SharedPreferences;
 import android.preference.Preference;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
 
 public class PrefFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.xml.preferences, container, false);
+		return rootView;
 	}
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
