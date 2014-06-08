@@ -41,13 +41,14 @@ public class RotationFragment extends Fragment {
 		if (isVisible()) {
 			// start sensor
 			sensor.start();
+			mGLSurfaceView.onResume();
 		} else {
 			// stop sensor
 			try {
 				sensor.stop();
+				mGLSurfaceView.onPause();
 			} catch (NullPointerException e) {}
 		}
-		mGLSurfaceView.onResume();
 	}
 
 	@Override
