@@ -134,7 +134,7 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("");
 	}
 
-	public void sendRotation(double X, double Y, double Z) {
-		dispatchCommand("R:"+(int)X+";"+(int)Y+";"+(int)Z);
+	public void sendRotation(int X, int Y, int Z) {
+		dispatchCommand("R:"+X+";"+Y+";"+Z);
 	}
 }
