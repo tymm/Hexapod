@@ -7,11 +7,13 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.opengl.GLSurfaceView;
 
 public class RotationFragment extends Fragment {
 	// Sensor Manager
 	private SensorManager mSensorManager;
 	private SensorInformation sensor;
+	private GLSurfaceView mGLSurfaceView;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -26,8 +28,10 @@ public class RotationFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_rotation, container, false);
-		return rootView;
+		mGLSurfaceView = new GLSurfaceView(this.getActivity());
+		mGLSurfaceView.setRenderer(sensor);
+
+		return mGLSurfaceView;
 	}
 
 	@Override
@@ -43,11 +47,13 @@ public class RotationFragment extends Fragment {
 				sensor.stop();
 			} catch (NullPointerException e) {}
 		}
+		mGLSurfaceView.onResume();
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 		sensor.stop();
+		mGLSurfaceView.onPause();
 	}
 }
