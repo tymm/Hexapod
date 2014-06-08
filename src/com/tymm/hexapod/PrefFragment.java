@@ -17,12 +17,6 @@ public class PrefFragment extends PreferenceFragment implements OnSharedPreferen
 		addPreferencesFromResource(R.xml.preferences);
 	}
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.xml.preferences, container, false);
-		return rootView;
-	}
-
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		if (key.equals("pref_gait")) {
 			int gait_id = Integer.parseInt(sharedPreferences.getString(key, ""));

@@ -23,10 +23,11 @@ import android.view.MenuItem.OnMenuItemClickListener;
 import android.hardware.SensorManager;
 import com.zerokol.views.JoystickView;
 import com.zerokol.views.JoystickView.OnJoystickMoveListener;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 public class ControlPadFragment extends Fragment {
 	// Bluetooth Communication
@@ -100,6 +101,16 @@ public class ControlPadFragment extends Fragment {
 		joystick = (JoystickView) rootView.findViewById(R.id.joystickView);
 		setJoystickListener(joystick);
 
+		// Turn left/right buttons
+		ImageButton button_turn_left = (ImageButton) rootView.findViewById(R.id.turn_left);
+		ImageButton button_turn_right = (ImageButton) rootView.findViewById(R.id.turn_right);
+
+		button_turn_left.setOnLongClickListener(new View.OnLongClickListener() {
+			public boolean onLongClick(View v) {
+				return true;
+			}
+		});
+
 		return rootView;
 	}
 
@@ -114,9 +125,10 @@ public class ControlPadFragment extends Fragment {
 	}
 
 	@Override
-	public void setUserVisibleHint(boolean isVisibleToUser) {
-		super.setUserVisibleHint(isVisibleToUser);
-		if (isVisibleToUser) {
+	public void onResume() {
+		super.onResume();
+
+		if (isVisible()) {
 			// start joystick
 			try {
 				setJoystickListener(joystick);

@@ -10,4 +10,14 @@
 		android:id="@+id/joystickView"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"/>
+	<ImageButton
+			android:id="@+id/turn_left"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/left"/>
+	<ImageButton
+			android:id="@+id/turn_right"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/right"/>
 </LinearLayout>

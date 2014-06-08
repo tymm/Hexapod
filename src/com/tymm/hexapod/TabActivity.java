@@ -5,11 +5,11 @@ import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentStatePagerAdapter;
+import android.app.Fragment;
+import android.support.v13.app.FragmentStatePagerAdapter;
+import android.app.Activity;
 
-public class TabActivity extends FragmentActivity implements ActionBar.TabListener {
+public class TabActivity extends Activity implements ActionBar.TabListener {
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
@@ -24,7 +24,7 @@ public class TabActivity extends FragmentActivity implements ActionBar.TabListen
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.view_pager);
 		actionBar = getActionBar();
-		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+		mAdapter = new TabsPagerAdapter(getFragmentManager());
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
