@@ -35,14 +35,8 @@ public class ControlPadFragment extends Fragment {
 	// Joystick
 	private JoystickView joystick;
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.fragment_controlpad, container, false);
-
-		// Joystick
-		joystick = (JoystickView) rootView.findViewById(R.id.joystickView);
-
-		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
+	private void setJoystickListener(JoystickView jstick) {
+		jstick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 
 			@Override
 			public void onValueChanged(int angle, int power, int direction) {
@@ -87,6 +81,24 @@ public class ControlPadFragment extends Fragment {
 				}
 			}
 		}, JoystickView.DEFAULT_LOOP_INTERVAL);
+	}
+
+	private void unsetJoystickListener(JoystickView jstick) {
+		jstick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
+
+			@Override
+			public void onValueChanged(int angle, int power, int direction) {
+			}
+		}, JoystickView.DEFAULT_LOOP_INTERVAL);
+	}
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View rootView = inflater.inflate(R.layout.fragment_controlpad, container, false);
+
+		// Joystick
+		joystick = (JoystickView) rootView.findViewById(R.id.joystickView);
+		setJoystickListener(joystick);
 
 		return rootView;
 	}
@@ -102,19 +114,25 @@ public class ControlPadFragment extends Fragment {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
+	public void setUserVisibleHint(boolean isVisibleToUser) {
+		super.setUserVisibleHint(isVisibleToUser);
+		if (isVisibleToUser) {
+			// start joystick
+			try {
+				setJoystickListener(joystick);
+			} catch (NullPointerException e) {}
+		} else {
+			// stop joystick
+			try {
+				unsetJoystickListener(joystick);
+			} catch (NullPointerException e) {}
+		}
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
 		// Stop joystick
-		joystick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
-
-			@Override
-			public void onValueChanged(int angle, int power, int direction) {
-			}
-		}, JoystickView.DEFAULT_LOOP_INTERVAL);
+		unsetJoystickListener(joystick);
 	}
 }
