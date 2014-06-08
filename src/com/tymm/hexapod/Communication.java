@@ -137,4 +137,17 @@ public class Communication extends Application implements Runnable {
 	public void sendRotation(int X, int Y, int Z) {
 		dispatchCommand("R:"+X+";"+Y+";"+Z);
 	}
+
+	public void sendWakeUp() {
+		dispatchCommand("W");
+	}
+
+	public void sendSleep() {
+		dispatchCommand("S");
+	}
+
+	public void sendShutdown() {
+		dispatchCommand("X");
+	}
+
 }
