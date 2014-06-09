@@ -15,7 +15,7 @@
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Speed">
 		<com.robobunny.SeekBarPreference
-				android:key="speechRate"
+				android:key="pref_speed"
 				android:title="Speed"
 				android:summary="Adjust speed"
 				android:defaultValue="80"

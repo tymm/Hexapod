@@ -18,10 +18,10 @@ public class PrefFragment extends PreferenceFragment implements FragmentLifecycl
 	}
 
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+		Communication comm = (Communication)getActivity().getApplication();
+
 		if (key.equals("pref_gait")) {
 			int gait_id = Integer.parseInt(sharedPreferences.getString(key, ""));
-
-			Communication comm = (Communication)getActivity().getApplication();
 
 			switch(gait_id) {
 				case 1:
@@ -39,6 +39,11 @@ public class PrefFragment extends PreferenceFragment implements FragmentLifecycl
 				default:
 					Log.i("Hexapod", "Unable to determine gait");
 				}
+		} else if (key.equals("pref_speed")) {
+			int speed = sharedPreferences.getInt(key, 0);
+			Log.i("Hexapod", "Set speed to "+ speed);
+
+			comm.sendSpeed(speed);
 		}
 	}
 
