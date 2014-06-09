@@ -158,6 +158,20 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("r");
 	}
 
+	public void sendSpeed(int speed) {
+		dispatchCommand("S:"+translate_speed(speed));
+	}
+
+	private int translate_speed(int value) {
+		// speed is between 0 and 100
+		// we need to scale it to 200-6000
+		int left = 100;
+		int right = 6000-200;
+
+		float scaled = (float)value / (float)left;
+		return (int)(200 + (scaled * right));
+	}
+
 	public void sendResetLegs() {
 		dispatchCommand("L");
 	}
