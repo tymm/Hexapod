@@ -105,6 +105,14 @@ public class HexapodActivity extends Activity {
 		unregisterReceiver(mReceiver);
 	}
 
+	@Override
+	public void onRestart() {
+		super.onRestart();
+		connect.cancel();
+		Toast toast = Toast.makeText(getApplicationContext(), "Disconnected", Toast.LENGTH_SHORT);
+		toast.show();
+	}
+
 	public void discoverBluetooth(View view) {
 		Toast toast = Toast.makeText(getApplicationContext(), "Discover", Toast.LENGTH_SHORT);
 		toast.show();
