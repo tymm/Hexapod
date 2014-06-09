@@ -36,38 +36,16 @@ public class RotationFragment extends Fragment implements FragmentLifecycle {
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-
-		Log.i("Visible", "onResume rotation");
-		if (isVisible()) {
-			// start sensor
-			sensor.start();
-			mGLSurfaceView.onResume();
-		} else {
-			// stop sensor
-			try {
-				sensor.stop();
-				mGLSurfaceView.onPause();
-			} catch (NullPointerException e) {}
-		}
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
+	public void onPauseFragment() {
+		// stop sensor
 		sensor.stop();
 		mGLSurfaceView.onPause();
-		Log.i("Visible", "onPause rotation");
-	}
-
-	@Override
-	public void onPauseFragment() {
-		Log.i("Visible", "rotation onPauseFragment()");
 	}
 
 	@Override
 	public void onResumeFragment() {
-		Log.i("Visible", "rotation onResumeFragment()");
+		// start sensor
+		sensor.start();
+		mGLSurfaceView.onResume();
 	}
 }

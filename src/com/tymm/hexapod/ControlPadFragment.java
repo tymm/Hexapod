@@ -39,6 +39,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 	private Thread thread_right;
 	private boolean stop_right = false;
 	private boolean stop_left = false;
+	private int i;
 
 	private void setJoystickListener(JoystickView jstick) {
 		jstick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
@@ -104,6 +105,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 		// Joystick
 		joystick = (JoystickView) rootView.findViewById(R.id.joystickView);
 		setJoystickListener(joystick);
+		Log.i("First", "OnCreateView");
 
 		// Turn left/right buttons
 		ImageView button_turn_left = (ImageView) rootView.findViewById(R.id.turn_left);
@@ -173,44 +175,21 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		Log.i("First", "OnCreate");
 		// Bluetooth Communication
 		comm = (Communication)getActivity().getApplication();
 		comm.start();
 	}
 
 	@Override
-	public void onResume() {
-		super.onResume();
-
-		Log.i("Visible", "onResume controlpad");
-		if (isVisible()) {
-			// start joystick
-			try {
-				setJoystickListener(joystick);
-			} catch (NullPointerException e) {}
-		} else {
-			// stop joystick
-			try {
-				unsetJoystickListener(joystick);
-			} catch (NullPointerException e) {}
-		}
-	}
-
-	@Override
-	public void onPause() {
-		super.onPause();
-		// Stop joystick
-		unsetJoystickListener(joystick);
-		Log.i("Visible", "onPause controlpad");
-	}
-
-	@Override
 	public void onPauseFragment() {
-		Log.i("Visible", "controlpad onPauseFragment()");
+		// stop joystick
+		unsetJoystickListener(joystick);
 	}
 
 	@Override
 	public void onResumeFragment() {
-		Log.i("Visible", "controlpad onResumeFragment()");
+		// start joystick
+		setJoystickListener(joystick);
 	}
 }
