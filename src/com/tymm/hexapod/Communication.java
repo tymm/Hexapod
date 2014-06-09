@@ -158,8 +158,8 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("r");
 	}
 
-	public void sendSpeed(int speed) {
-		dispatchCommand("S:"+speed);
+	public void sendResetLegs() {
+		dispatchCommand("L");
 	}
 
 }

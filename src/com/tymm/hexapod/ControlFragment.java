@@ -23,6 +23,7 @@ public class ControlFragment extends Fragment implements FragmentLifecycle {
 		final Button wake_up = (Button) rootView.findViewById(R.id.button_wakeup);
 		final Button sleep = (Button) rootView.findViewById(R.id.button_sleep);
 		final Button shutdown = (Button) rootView.findViewById(R.id.button_shutdown);
+		final Button reset_legs = (Button) rootView.findViewById(R.id.reset_legs);
 
 		wake_up.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -42,6 +43,13 @@ public class ControlFragment extends Fragment implements FragmentLifecycle {
 			@Override
 			public void onClick(final View v) {
 				comm.sendShutdown();
+			}
+		});
+
+		reset_legs.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(final View v) {
+				comm.sendResetLegs();
 			}
 		});
 
