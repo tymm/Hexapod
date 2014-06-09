@@ -27,7 +27,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
 
 public class ControlPadFragment extends Fragment {
 	// Bluetooth Communication
@@ -107,8 +106,8 @@ public class ControlPadFragment extends Fragment {
 		setJoystickListener(joystick);
 
 		// Turn left/right buttons
-		ImageButton button_turn_left = (ImageButton) rootView.findViewById(R.id.turn_left);
-		ImageButton button_turn_right = (ImageButton) rootView.findViewById(R.id.turn_right);
+		ImageView button_turn_left = (ImageView) rootView.findViewById(R.id.turn_left);
+		ImageView button_turn_right = (ImageView) rootView.findViewById(R.id.turn_right);
 
 		button_turn_left.setOnTouchListener(new View.OnTouchListener() {
 			@Override
