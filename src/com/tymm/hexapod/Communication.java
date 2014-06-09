@@ -150,4 +150,12 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("X");
 	}
 
+	public void sendTurnLeft() {
+		dispatchCommand("l");
+	}
+
+	public void sendTurnRight() {
+		dispatchCommand("r");
+	}
+
 }

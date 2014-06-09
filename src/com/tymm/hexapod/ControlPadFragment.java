@@ -36,6 +36,11 @@ public class ControlPadFragment extends Fragment {
 	// Joystick
 	private JoystickView joystick;
 
+	private Thread thread_left;
+	private Thread thread_right;
+	private boolean stop_right = false;
+	private boolean stop_left = false;
+
 	private void setJoystickListener(JoystickView jstick) {
 		jstick.setOnJoystickMoveListener(new OnJoystickMoveListener() {
 
@@ -105,8 +110,58 @@ public class ControlPadFragment extends Fragment {
 		ImageButton button_turn_left = (ImageButton) rootView.findViewById(R.id.turn_left);
 		ImageButton button_turn_right = (ImageButton) rootView.findViewById(R.id.turn_right);
 
-		button_turn_left.setOnLongClickListener(new View.OnLongClickListener() {
-			public boolean onLongClick(View v) {
+		button_turn_left.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// start thread
+					Runnable runnable = new Runnable() {
+						public void run() {
+							while(!stop_left) {
+								comm.sendTurnLeft();
+								try {
+									Thread.sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+							stop_left = false;
+						}
+					};
+					thread_left = new Thread(runnable);
+					thread_left.start();
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// stop thread
+					stop_left = true;
+				}
+				return true;
+			}
+		});
+
+		button_turn_right.setOnTouchListener(new View.OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					// start thread
+					Runnable runnable = new Runnable() {
+						public void run() {
+							while(!stop_right) {
+								comm.sendTurnRight();
+								try {
+									Thread.sleep(100);
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+							stop_right = false;
+						}
+					};
+					thread_right = new Thread(runnable);
+					thread_right.start();
+				} else if (event.getAction() == MotionEvent.ACTION_UP) {
+					// stop thread
+					stop_right = true;
+				}
 				return true;
 			}
 		});
