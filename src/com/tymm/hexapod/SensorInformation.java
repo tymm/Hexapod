@@ -63,10 +63,10 @@ class SensorInformation implements GLSurfaceView.Renderer, SensorEventListener {
 				double X = Math.toDegrees(orientation[1]);
 				double Y = Math.toDegrees(orientation[2]);
 
-				Log.i("Hexapod", "Z: " + (int)(Z+135) + " X: " + (int)-1*X + " Y: " + (int)Y);
-				Log.i("Hexapod", "scaled Z: " + scale(Z+135) + " scaled X: " + scale(-1*X) + " scaled Y: " + scale(Y));
+				Log.i("Hexapod", "Z: " + (int)(-1*Z+135) + " X: " + (int)-1*X + " Y: " + (int)Y);
+				Log.i("Hexapod", "scaled Z: " + scale(-1*Z+135) + " scaled X: " + scale(-1*X) + " scaled Y: " + scale(Y));
 				// Sending sensor information here
-				comm.sendRotation(scale(-1*X), scale(Y), scale(Z+135));
+				comm.sendRotation(scale(-1*X), scale(Y), scale(-1*Z+135));
 			}
 		}
 	}
