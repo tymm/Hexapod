@@ -16,6 +16,9 @@ public class RotationFragment extends Fragment implements FragmentLifecycle {
 	private SensorInformation sensor;
 	private GLSurfaceView mGLSurfaceView;
 
+	// Bluetooth Communication
+	private Communication comm;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,10 @@ public class RotationFragment extends Fragment implements FragmentLifecycle {
 		// Sensors
 		mSensorManager = (SensorManager)context.getSystemService(context.SENSOR_SERVICE);
 		sensor = new SensorInformation(mSensorManager, getActivity().getApplicationContext());
+
+		// Bluetooth Communication
+		comm = (Communication)getActivity().getApplication();
+		comm.start();
 	}
 
 	@Override
@@ -40,6 +47,7 @@ public class RotationFragment extends Fragment implements FragmentLifecycle {
 		// stop sensor
 		sensor.stop();
 		mGLSurfaceView.onPause();
+		comm.sendRotationReset();
 	}
 
 	@Override
