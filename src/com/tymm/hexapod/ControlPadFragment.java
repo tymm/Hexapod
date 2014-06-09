@@ -56,7 +56,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 						break;
 					case JoystickView.FRONT_RIGHT:
 						Log.i("Hexapod", "FRONT LEFT");
-						comm.sendUpLeft();
+						//comm.sendUpLeft();
 						break;
 					case JoystickView.RIGHT:
 						Log.i("Hexapod", "LEFT");
@@ -64,7 +64,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 						break;
 					case JoystickView.RIGHT_BOTTOM:
 						Log.i("Hexapod", "LEFT BOTTOM");
-						comm.sendDownLeft();
+						//comm.sendDownLeft();
 						break;
 					case JoystickView.BOTTOM:
 						Log.i("Hexapod", "BOTTOM");
@@ -72,7 +72,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 						break;
 					case JoystickView.BOTTOM_LEFT:
 						Log.i("Hexapod", "BOTTOM RIGHT");
-						comm.sendDownRight();
+						//comm.sendDownRight();
 						break;
 					case JoystickView.LEFT:
 						Log.i("Hexapod", "RIGHT");
@@ -80,7 +80,7 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 						break;
 					case JoystickView.LEFT_FRONT:
 						Log.i("Hexapod", "RIGHT FRONT");
-						comm.sendUpRight();
+						//comm.sendUpRight();
 						break;
 					default:
 						Log.i("Hexapod", "Center");
