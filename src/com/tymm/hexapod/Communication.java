@@ -102,6 +102,18 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("G:3");
 	}
 
+	public void setGaitTripod() {
+		dispatchCommand("G:4");
+	}
+
+	public void setGaitOnRoad() {
+		dispatchCommand("G:5");
+	}
+
+	public void setGaitOffRoad() {
+		dispatchCommand("G:6");
+	}
+
 	public void sendUpUp() {
 		dispatchCommand("a");
 	}
@@ -174,6 +186,10 @@ public class Communication extends Application implements Runnable {
 
 	public void sendResetLegs() {
 		dispatchCommand("L");
+	}
+
+	public void sendRotationReset() {
+		dispatchCommand("R:"+0+";"+0+";"+0);
 	}
 
 }
