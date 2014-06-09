@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class ControlFragment extends Fragment {
+public class ControlFragment extends Fragment implements FragmentLifecycle {
 	// Bluetooth Communication
 	private Communication comm;
 
@@ -47,5 +47,13 @@ public class ControlFragment extends Fragment {
 
 
 		return rootView;
+	}
+
+	@Override
+	public void onPauseFragment() {
+	}
+
+	@Override
+	public void onResumeFragment() {
 	}
 }

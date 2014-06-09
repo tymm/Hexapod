@@ -28,7 +28,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-public class ControlPadFragment extends Fragment {
+public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 	// Bluetooth Communication
 	private Communication comm;
 
@@ -182,6 +182,7 @@ public class ControlPadFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
+		Log.i("Visible", "onResume controlpad");
 		if (isVisible()) {
 			// start joystick
 			try {
@@ -200,5 +201,16 @@ public class ControlPadFragment extends Fragment {
 		super.onPause();
 		// Stop joystick
 		unsetJoystickListener(joystick);
+		Log.i("Visible", "onPause controlpad");
+	}
+
+	@Override
+	public void onPauseFragment() {
+		Log.i("Visible", "controlpad onPauseFragment()");
+	}
+
+	@Override
+	public void onResumeFragment() {
+		Log.i("Visible", "controlpad onResumeFragment()");
 	}
 }

@@ -8,8 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.opengl.GLSurfaceView;
+import android.util.Log;
 
-public class RotationFragment extends Fragment {
+public class RotationFragment extends Fragment implements FragmentLifecycle {
 	// Sensor Manager
 	private SensorManager mSensorManager;
 	private SensorInformation sensor;
@@ -38,6 +39,7 @@ public class RotationFragment extends Fragment {
 	public void onResume() {
 		super.onResume();
 
+		Log.i("Visible", "onResume rotation");
 		if (isVisible()) {
 			// start sensor
 			sensor.start();
@@ -56,5 +58,16 @@ public class RotationFragment extends Fragment {
 		super.onPause();
 		sensor.stop();
 		mGLSurfaceView.onPause();
+		Log.i("Visible", "onPause rotation");
+	}
+
+	@Override
+	public void onPauseFragment() {
+		Log.i("Visible", "rotation onPauseFragment()");
+	}
+
+	@Override
+	public void onResumeFragment() {
+		Log.i("Visible", "rotation onResumeFragment()");
 	}
 }

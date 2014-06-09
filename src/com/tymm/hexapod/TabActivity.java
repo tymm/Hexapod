@@ -38,12 +38,22 @@ public class TabActivity extends Activity implements ActionBar.TabListener {
 
 		// When swiping view, select tab
 		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+			int currentPosition = 0;
 
 			@Override
 			public void onPageSelected(int position) {
 				// on changing the page
 				// make respected tab selected
 				actionBar.setSelectedNavigationItem(position);
+
+				// Let the fragment know when it really is visible or not
+				FragmentLifecycle fragmentToShow = (FragmentLifecycle)mAdapter.getItem(position);
+				fragmentToShow.onResumeFragment();
+
+				FragmentLifecycle fragmentToHide = (FragmentLifecycle)mAdapter.getItem(currentPosition);
+				fragmentToHide.onPauseFragment();
+
+				currentPosition = position;
 			}
 
 		@Override

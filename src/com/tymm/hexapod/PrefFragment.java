@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.LayoutInflater;
 
-public class PrefFragment extends PreferenceFragment implements OnSharedPreferenceChangeListener {
+public class PrefFragment extends PreferenceFragment implements FragmentLifecycle, OnSharedPreferenceChangeListener {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -54,4 +54,11 @@ public class PrefFragment extends PreferenceFragment implements OnSharedPreferen
 		getPreferenceScreen().getSharedPreferences().unregisterOnSharedPreferenceChangeListener(this);
 	}
 
+	@Override
+	public void onPauseFragment() {
+	}
+
+	@Override
+	public void onResumeFragment() {
+	}
 }
