@@ -36,6 +36,18 @@ public class PrefFragment extends PreferenceFragment implements FragmentLifecycl
 					Log.i("Hexapod", "Setting gait to Wave 3");
 					comm.setGaitWaveThree();
 					break;
+				case 4:
+					Log.i("Hexapod", "Setting gait to Tripod");
+					comm.setGaitTripod();
+					break;
+				case 5:
+					Log.i("Hexapod", "Setting gait to Onroad");
+					comm.setGaitOnRoad();
+					break;
+				case 6:
+					Log.i("Hexapod", "Setting gait to Offroad");
+					comm.setGaitOffRoad();
+					break;
 				default:
 					Log.i("Hexapod", "Unable to determine gait");
 				}
