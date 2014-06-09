@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:robobunny="http://robobunny.com"
+		android:key="preference_screen">
 	<PreferenceCategory
 			android:title="@string/pref_gait"
 			android:key="pref_key_gait_settings">
@@ -10,5 +12,17 @@
 				android:entries="@array/pref_gait_entries"
 				android:entryValues="@array/pref_gait_values"
 				android:defaultValue="@string/pref_gait_wave_3" />
+	</PreferenceCategory>
+	<PreferenceCategory android:title="Speed">
+		<com.robobunny.SeekBarPreference
+				android:key="speechRate"
+				android:title="Speed"
+				android:summary="Adjust speed"
+				android:defaultValue="80"
+				android:max="100"
+				robobunny:min="1"
+				robobunny:unitsLeft=""
+				robobunny:unitsRight="%"
+			/>
 	</PreferenceCategory>
 </PreferenceScreen>
