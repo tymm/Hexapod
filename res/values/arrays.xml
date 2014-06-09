@@ -5,15 +5,19 @@
 		<item>Wave 2</item>
 		<item>Wave 3</item>
 		<item>Tripod</item>
-		<item>Onroad</item>
-		<item>Offroad</item>
 	</string-array>
 	<string-array name="pref_gait_values">
 		<item>1</item>
 		<item>2</item>
 		<item>3</item>
 		<item>4</item>
-		<item>5</item>
-		<item>6</item>
+	</string-array>
+	<string-array name="pref_road_entries">
+		<item>Onroad</item>
+		<item>Offroad</item>
+	</string-array>
+	<string-array name="pref_road_values">
+		<item>1</item>
+		<item>2</item>
 	</string-array>
 </resources>

@@ -5,10 +5,11 @@
 	<string name="app_name">Hexapod</string>
 	<string name="search_button">Discover</string>
 	<string name="pref_gait">Gait</string>
-	<string name="pref_gait_dialog">Gait Dialog</string>
 	<string name="pref_gait_wave_1">Wave 1</string>
 	<string name="pref_gait_wave_2">Wave 2</string>
 	<string name="pref_gait_wave_3">Wave 3</string>
+	<string name="pref_onroad">Onroad</string>
+	<string name="pref_offroad">Offroad</string>
 	<string name="settings">Settings</string>
 
 </resources>

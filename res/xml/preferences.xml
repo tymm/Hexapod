@@ -7,11 +7,18 @@
 			android:key="pref_key_gait_settings">
 		<ListPreference
 				android:key="pref_gait"
-				android:title="@string/pref_gait"
-				android:dialogTitle="@string/pref_gait_dialog"
+				android:title="Gait"
+				android:dialogTitle="Select gait"
 				android:entries="@array/pref_gait_entries"
 				android:entryValues="@array/pref_gait_values"
 				android:defaultValue="@string/pref_gait_wave_3" />
+		<ListPreference
+				android:key="pref_road"
+				android:title="Onroad/Offroad"
+				android:dialogTitle="Select onroad/offroad"
+				android:entries="@array/pref_road_entries"
+				android:entryValues="@array/pref_road_values"
+				android:defaultValue="@string/pref_onroad" />
 	</PreferenceCategory>
 	<PreferenceCategory android:title="Speed">
 		<com.robobunny.SeekBarPreference
