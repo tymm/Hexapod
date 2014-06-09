@@ -91,15 +91,15 @@ public class Communication extends Application implements Runnable {
 
 
 	public void setGaitWaveOne() {
-		dispatchCommand("Gait:Wave1");
+		dispatchCommand("G:1");
 	}
 
 	public void setGaitWaveTwo() {
-		dispatchCommand("Gait:Wave2");
+		dispatchCommand("G:2");
 	}
 
 	public void setGaitWaveThree() {
-		dispatchCommand("Gait:Wave3");
+		dispatchCommand("G:3");
 	}
 
 	public void sendUpUp() {
@@ -107,31 +107,31 @@ public class Communication extends Application implements Runnable {
 	}
 
 	public void sendUpRight() {
-		dispatchCommand("e");
-	}
-
-	public void sendRightRight() {
 		dispatchCommand("b");
 	}
 
-	public void sendDownRight() {
-		dispatchCommand("f");
-	}
-
-	public void sendDownDown() {
+	public void sendRightRight() {
 		dispatchCommand("c");
 	}
 
-	public void sendDownLeft() {
-		dispatchCommand("");
-	}
-
-	public void sendLeftLeft() {
+	public void sendDownRight() {
 		dispatchCommand("d");
 	}
 
+	public void sendDownDown() {
+		dispatchCommand("e");
+	}
+
+	public void sendDownLeft() {
+		dispatchCommand("f");
+	}
+
+	public void sendLeftLeft() {
+		dispatchCommand("g");
+	}
+
 	public void sendUpLeft() {
-		dispatchCommand("");
+		dispatchCommand("h");
 	}
 
 	public void sendRotation(int X, int Y, int Z) {
