@@ -49,42 +49,9 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 				// TODO Auto-generated method stub
 				Log.i("Hexapod", " " + String.valueOf(angle) + "°");
 				Log.i("Hexapod", " " + String.valueOf(power) + "%");
-				switch (direction) {
-					case JoystickView.FRONT:
-						Log.i("Hexapod", "Front");
-						comm.sendUpUp();
-						break;
-					case JoystickView.FRONT_RIGHT:
-						Log.i("Hexapod", "FRONT LEFT");
-						//comm.sendUpLeft();
-						break;
-					case JoystickView.RIGHT:
-						Log.i("Hexapod", "LEFT");
-						comm.sendLeftLeft();
-						break;
-					case JoystickView.RIGHT_BOTTOM:
-						Log.i("Hexapod", "LEFT BOTTOM");
-						//comm.sendDownLeft();
-						break;
-					case JoystickView.BOTTOM:
-						Log.i("Hexapod", "BOTTOM");
-						comm.sendDownDown();
-						break;
-					case JoystickView.BOTTOM_LEFT:
-						Log.i("Hexapod", "BOTTOM RIGHT");
-						//comm.sendDownRight();
-						break;
-					case JoystickView.LEFT:
-						Log.i("Hexapod", "RIGHT");
-						comm.sendRightRight();
-						break;
-					case JoystickView.LEFT_FRONT:
-						Log.i("Hexapod", "RIGHT FRONT");
-						//comm.sendUpRight();
-						break;
-					default:
-						Log.i("Hexapod", "Center");
-				}
+
+				// send direction
+				comm.sendMove(angle, power);
 			}
 		}, JoystickView.DEFAULT_LOOP_INTERVAL);
 	}
