@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
+import java.lang.Math;
 
 /** This class is used to maintain global application state about the bluetooth connection and to send out data over bluetooth */
 public class Communication extends Application implements Runnable {
@@ -192,4 +193,36 @@ public class Communication extends Application implements Runnable {
 		dispatchCommand("R:"+0+";"+0+";"+0);
 	}
 
+	public void sendMove(int degree, int speed) {
+		int[] xy = new int[2];
+		xy = translate_degree(degree, speed);
+
+		int X = xy[0];
+		int Y = xy[1];
+
+		dispatchCommand("M:"+Y+";"+X+";"+0);
+	}
+
+	private int[] translate_degree(int degree, int speed) {
+		double x = Math.cos(Math.toRadians(degree));
+		double y = Math.sin(Math.toRadians(degree));
+		int[] result = new int[2];
+
+		if (x < 0) {
+			x = x * 128;
+		} else {
+			x = x * 127;
+		}
+
+		if (y < 0) {
+			y = y * 128;
+		} else {
+			y = y * 127;
+		}
+
+		result[0] = (int)(x * speed / 100.0);
+		result[1] = (int)(y * speed / 100.0);
+
+		return result;
+	}
 }
