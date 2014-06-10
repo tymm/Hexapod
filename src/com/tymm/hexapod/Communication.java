@@ -172,7 +172,7 @@ public class Communication extends Application implements Runnable {
 	}
 
 	public void sendSpeed(int speed) {
-		dispatchCommand("S:"+translate_speed(speed));
+		dispatchCommand("C:"+translate_speed(speed));
 	}
 
 	private int translate_speed(int value) {
