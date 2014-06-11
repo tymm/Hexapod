@@ -145,7 +145,6 @@ public class ControlPadFragment extends Fragment implements FragmentLifecycle {
 		Log.i("First", "OnCreate");
 		// Bluetooth Communication
 		comm = (Communication)getActivity().getApplication();
-		comm.start();
 	}
 
 	@Override

@@ -2,17 +2,18 @@ package com.tymm.hexapod;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.support.v4.view.ViewPager;
-import android.app.Fragment;
-import android.support.v13.app.FragmentStatePagerAdapter;
 import android.app.Activity;
+import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.v4.view.ViewPager;
 
 public class TabActivity extends Activity implements ActionBar.TabListener {
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
 	private ActionBar actionBar;
+	private Communication comm;
 	// Tab titles
 	private String[] tabs = { "Joystick", "Control", "Rotation", "Settings" };
 
@@ -20,6 +21,13 @@ public class TabActivity extends Activity implements ActionBar.TabListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
+
+		// Start bluetooth communication
+		comm = (Communication)getApplication();
+		comm.start();
+
+		// If there are saved settings, send them to the Hexapod
+		loadSettings();
 
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.view_pager);
@@ -84,5 +92,49 @@ public class TabActivity extends Activity implements ActionBar.TabListener {
 		// on tab selected
 		// show respected fragment view
 		viewPager.setCurrentItem(tab.getPosition());
+	}
+
+	// Send settings to Hexapod
+	private void loadSettings() {
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+		String gait = sharedPref.getString("pref_gait","");
+		String road = sharedPref.getString("pref_road","");
+		int speed = sharedPref.getInt("pref_speed", -1);
+
+		// Set gait
+		if (!gait.equals("")) {
+			switch(Integer.parseInt(gait)) {
+				case 1:
+					comm.setGaitTripod();
+					break;
+				case 2:
+					comm.setGaitWaveTwo();
+					break;
+				case 3:
+					comm.setGaitWaveThree();
+					break;
+				case 4:
+					comm.setGaitTripod();
+					break;
+			}
+		}
+
+		// Set road
+		if (!road.equals("")) {
+			switch(Integer.parseInt(road)) {
+				case 1:
+					comm.setGaitOnRoad();
+					break;
+				case 2:
+					comm.setGaitOffRoad();
+					break;
+			}
+		}
+
+		// Set speed
+		if (speed != -1) {
+			comm.sendSpeed(speed);
+		}
 	}
 }
